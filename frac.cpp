@@ -29,8 +29,7 @@ int Fraction::getDenom()const {
 }
 
 void Fraction::print()const {
-	cout<< "Num is: "<< this->num<< "\n";
-	cout<< "Denom is: "<< this->denom<< "\n";
+	cout<< this->num<< "/"<< this->denom;
 }  
 
 Fraction Fraction::add(const Fraction& F)const {
@@ -65,7 +64,7 @@ Fraction Fraction::sub(const Fraction& F)const {
 
 	if (localDenom == otherDenom){
 		result.setNum(localNum-otherNum);
-		result.setDenom(localDenom)
+		result.setDenom(localDenom);
 	} else if (localDenom != otherDenom){
 		result.setNum((localNum*otherDenom) - (otherNum*localDenom));
 		result.setDenom(localDenom*otherDenom);
@@ -75,10 +74,16 @@ Fraction Fraction::sub(const Fraction& F)const {
 }
 
 Fraction Fraction::mult(const Fraction& F)const {
-	Fraction product = Fration(this->num * F.getNum(), this->denom * F.getDenom);
+	Fraction product = Fraction(this->num * F.getNum(), this->denom * F.getDenom());
 	return product;
 }
 
-Fraction Fraction::div(const Fraction& F)const {}
-bool     Fraction::gt(const Fraction& F)const {}
+Fraction Fraction::div(const Fraction& F)const {
+	Fraction result = Fraction(this->num * F.getDenom(), this->denom * F.getNum());
+	return result;
+}
+
+bool     Fraction::gt(const Fraction& F)const {
+	return (float(this->num/this->denom) > float(F.getNum()/F.getDenom()));
+}
 Fraction Fraction::reduce() {}
