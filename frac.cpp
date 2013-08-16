@@ -34,7 +34,7 @@ void Fraction::print()const {
 }  
 
 Fraction Fraction::add(const Fraction& F)const {
-	Fraction tempFrac = Fraction();
+	Fraction result = Fraction();
 
 	int localNum = this->num;
 	int otherNum = F.getNum();
@@ -44,27 +44,41 @@ Fraction Fraction::add(const Fraction& F)const {
 
 	// Case 1: local and other denom are equal.
 	if (localDenom == otherDenom) { // the same if (this->denom == F.getDenom())
-		tempFrac.setNum(localNum+otherNum);
-		tempFrac.setDenom(localDenom);
+		result.setNum(localNum+otherNum);
+		result.setDenom(localDenom);
 	} else if (localDenom != otherDenom) {
-		tempFrac.setNum((localNum*otherDenom)+(otherNum*localDenom));
-		tempFrac.setDenom(localDenom*otherDenom);
+		result.setNum((localNum*otherDenom)+(otherNum*localDenom));
+		result.setDenom(localDenom*otherDenom);
 	}
 
-	return tempFrac;
+	return result;
 }
 
 Fraction Fraction::sub(const Fraction& F)const {
-	Fraction tempFrac = Fraction();
+	Fraction result = Fraction();
 
 	int localNum = this->num;
 	int otherNum = F.getNum();
 
 	int localDenom = this->num;
 	int otherDenom = F.getDenom();
+
+	if (localDenom == otherDenom){
+		result.setNum(localNum-otherNum);
+		result.setDenom(localDenom)
+	} else if (localDenom != otherDenom){
+		result.setNum((localNum*otherDenom) - (otherNum*localDenom));
+		result.setDenom(localDenom*otherDenom);
+	}
+
+	return result;
 }
 
-Fraction Fraction::mult(const Fraction& F)const {}
+Fraction Fraction::mult(const Fraction& F)const {
+	Fraction product = Fration(this->num * F.getNum(), this->denom * F.getDenom);
+	return product;
+}
+
 Fraction Fraction::div(const Fraction& F)const {}
 bool     Fraction::gt(const Fraction& F)const {}
 Fraction Fraction::reduce() {}
