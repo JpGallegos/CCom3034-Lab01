@@ -7,6 +7,8 @@ class Fraction {
 		Fraction();
 		Fraction(int n, int d);
 
+		int fracGCD();
+
 		void setNum(int n);
 		void setDenom(int d);
 
@@ -20,7 +22,7 @@ class Fraction {
 		Fraction mult(const Fraction& F) const;
 		Fraction div(const Fraction& F) const;
 		bool     gt(const Fraction& F) const;
-		Fraction reduce();
+		void     reduce();
 };
 
 #endif

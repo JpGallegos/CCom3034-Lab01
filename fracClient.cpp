@@ -51,11 +51,13 @@ int main() {
 	cout<< "\n\tThe quotient of the two fractions is: ";
 	fracSum.print();
 
+	// The reduce() method is implemented inside the add(), sub(), mult(), and div() methods
+
 	cout<< "\nGiven two fractions: "; fracSum.print(); cout<< " and "; fracSum2.print(); cout<< ": \n";
 	if (fracSum.gt(fracSum2)){
-		fracSum.print(); cout<< " is greater.\n";
+		cout<<"\t"; fracSum.print(); cout<< " is greater.\n";
 	} else {
-		fracSum2.print(); cout<< " is greater.\n";
+		cout<<"\t"; fracSum2.print(); cout<< " is greater.\n";
 	}
 
 	return 1;

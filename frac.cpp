@@ -2,6 +2,17 @@
 #include <iostream>
 using namespace std;
 
+int gcd(int x, int y) {
+
+	// cout<< "\nThe greatest common divsor of "<<n<<" and "<<m<< " is ";
+	if (y == 0) { 
+		// cout<< n<< "\n";
+		return x;
+	}else 
+		return gcd(y, x%y);
+}
+
+
 Fraction::Fraction() {
 	num = 0;
 	denom = 1;
@@ -10,6 +21,15 @@ Fraction::Fraction() {
 Fraction::Fraction(int n, int d) {
 	num = n;
 	denom = d;
+}
+
+int Fraction::fracGCD(){
+	// For the gcd(x, y) to work, x >= y, y >= 0
+	int x = (this->num >= this->denom) ? this->num: this->denom;
+	int y = (this->num < this->denom) ? this->num: this->denom;
+
+	int result = gcd(x, y);
+	return result;
 }
 
 void Fraction::setNum(int n) {
@@ -50,6 +70,7 @@ Fraction Fraction::add(const Fraction& F)const {
 		result.setDenom(localDenom*otherDenom);
 	}
 
+	result.reduce();
 	return result;
 }
 
@@ -70,20 +91,29 @@ Fraction Fraction::sub(const Fraction& F)const {
 		result.setDenom(localDenom*otherDenom);
 	}
 
+	result.reduce();
 	return result;
 }
 
 Fraction Fraction::mult(const Fraction& F)const {
 	Fraction product = Fraction(this->num * F.getNum(), this->denom * F.getDenom());
+	product.reduce();
 	return product;
 }
 
 Fraction Fraction::div(const Fraction& F)const {
 	Fraction result = Fraction(this->num * F.getDenom(), this->denom * F.getNum());
+	result.reduce();
 	return result;
 }
 
 bool     Fraction::gt(const Fraction& F)const {
 	return (float(this->num/this->denom) > float(F.getNum()/F.getDenom()));
 }
-Fraction Fraction::reduce() {}
+void Fraction::reduce() {
+	int commonDivisor = this->fracGCD();
+	if (commonDivisor > 1) {
+		this->num = num/commonDivisor;
+		this->denom = denom/commonDivisor;
+	} 
+}
