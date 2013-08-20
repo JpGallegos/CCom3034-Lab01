@@ -1,0 +1,20 @@
+The numerator for a default fraction is: 0
+The denominator for a default fraction is: 1
+The addition of sums with equal denominators: 
+	The first fraction is: 4/2
+	The second fraction is: 5/2
+	The sum of the two fractions is: 9/2
+The sum of two fractions with different denominators: 
+	The first fraction is: 9/3
+	The second fraction is: 5/2
+	The sum of the two fractions is: 11/2
+The product of two fractions: 
+	The first fraction is: 9/3
+	The second fraction is: 4/2
+	The product of the two fractions is: 6/1
+The division of two fractions: 
+	The first fraction is: 5/2
+	The second fraction is: 9/3
+	The quotient of the two fractions is: 5/6
+Given two fractions: 5/6 and 11/2: 
+	11/2 is greater.
