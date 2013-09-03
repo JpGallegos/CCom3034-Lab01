@@ -12,6 +12,13 @@ int gcd(int x, int y) {
 		return gcd(y, x%y);
 }
 
+int lcm(int n, int m) {
+    // For the gcd(x, y) to work, x >= y, y >= 0
+    int x = (n >= m) ? n: m;
+    int y = (n < m) ? n: m;
+
+    return (x*y)/gcd(x, y);
+} 
 
 Fraction::Fraction() {
 	num = 0;
@@ -110,9 +117,16 @@ Fraction Fraction::div(const Fraction& F)const {
 	return result;
 }
 
-bool     Fraction::gt(const Fraction& F)const {
-	return (float(this->num/this->denom) > float(F.getNum()/F.getDenom()));
+bool Fraction::gt(const Fraction& F)const {
+    int LCM = lcm(denom, F.getDenom());
+    return ((num * (LCM/denom)) > (F.getNum() * (LCM/F.getDenom())));
 }
+
+bool Fraction::lt(const Fraction& F)const {
+    int LCM = lcm(denom, F.getDenom());
+    return ((num * (LCM/denom)) < (F.getNum() * (LCM/F.getDenom())));
+}
+
 void Fraction::reduce() {
 	int commonDivisor = this->fracGCD();
 	if (commonDivisor > 1) {

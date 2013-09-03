@@ -90,7 +90,7 @@ void fracArrayOrder(Fraction *fracArray, int size) {
         int smallestPosIdx = startIdx;
 
         for (int currentIdx = startIdx + 1; currentIdx<size; currentIdx++){
-            if (fracArray[smallestPosIdx].gt(fracArray[currentIdx])) {
+            if (fracArray[currentIdx].lt(fracArray[smallestPosIdx])) {
                 smallestPosIdx = currentIdx;
             }
         }
