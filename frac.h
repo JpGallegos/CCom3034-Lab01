@@ -1,5 +1,15 @@
+// ==========================================================================
+// Author  : John P. Gallegos 
+// Est. No : 801-06-2608
+// Email   : sylladie@gmail.com
+// ===========================================================================
+
+#include <iostream>
+using namespace std;
+
 #ifndef FRAC_H
 #define FRAC_H
+
 class Fraction {
 	private:
 		int num, denom;
@@ -15,7 +25,7 @@ class Fraction {
 		int getNum() const;
 		int getDenom() const;
 
-		void print()const;
+		void print(ostream & out) const;
 		
 		Fraction add(const Fraction& F) const; 
 		Fraction sub(const Fraction& F) const;
@@ -24,5 +34,7 @@ class Fraction {
 		bool     gt(const Fraction& F) const;
 		void     reduce();
 };
+
+ostream & operator<<(ostream & out, const Fraction & frac);
 
 #endif

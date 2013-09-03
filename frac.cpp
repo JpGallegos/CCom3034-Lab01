@@ -25,8 +25,8 @@ Fraction::Fraction(int n, int d) {
 
 int Fraction::fracGCD(){
 	// For the gcd(x, y) to work, x >= y, y >= 0
-	int x = (this->num >= this->denom) ? this->num: this->denom;
-	int y = (this->num < this->denom) ? this->num: this->denom;
+	int x = (num >= denom) ? num: denom;
+	int y = (num < denom) ? num: denom;
 
 	int result = gcd(x, y);
 	return result;
@@ -48,9 +48,16 @@ int Fraction::getDenom()const {
 	return denom;
 }
 
-void Fraction::print()const {
-	cout<< this->num<< "/"<< this->denom;
+void Fraction::print(ostream & out)const {
+	out<< num<< "/"<< denom;
 }  
+
+//--- Definition of output operator 
+ostream & operator<< (ostream & out, const Fraction & frac)
+{  
+   frac.print(out); 
+   return out;  
+}
 
 Fraction Fraction::add(const Fraction& F)const {
 	Fraction result = Fraction();
@@ -70,7 +77,6 @@ Fraction Fraction::add(const Fraction& F)const {
 		result.setDenom(localDenom*otherDenom);
 	}
 
-	result.reduce();
 	return result;
 }
 
@@ -91,19 +97,16 @@ Fraction Fraction::sub(const Fraction& F)const {
 		result.setDenom(localDenom*otherDenom);
 	}
 
-	result.reduce();
 	return result;
 }
 
 Fraction Fraction::mult(const Fraction& F)const {
 	Fraction product = Fraction(this->num * F.getNum(), this->denom * F.getDenom());
-	product.reduce();
 	return product;
 }
 
 Fraction Fraction::div(const Fraction& F)const {
 	Fraction result = Fraction(this->num * F.getDenom(), this->denom * F.getNum());
-	result.reduce();
 	return result;
 }
 
